@@ -8,10 +8,30 @@
             <div class="bg-white shadow-xl rounded-lg overflow-hidden">
               {% if article.image %}
                 <a href="{{ article.url }}">
+                  {% comment %}
+                    <img
+                      class="w-full h-80 object-cover"
+                      src="{{ article.image | img_url: 'medium' }}"
+                      alt="{{ article.image.alt }}"
+                    >
+                  {% endcomment %}
+
+                  {% comment %}
+                    <img
+                      class="w-full h-80 object-cover object-center"
+                      src="{{ article.image | image_url: width: 800 }}"
+                      alt="{{ article.image.alt | escape }}"
+                      loading="lazy"
+                    >
+                  {% endcomment %}
+
                   <img
-                    class="w-full h-80 object-cover"
-                    src="{{ article.image | img_url: 'medium' }}"
-                    alt="{{ article.image.alt }}"
+                    class="w-full h-80 object-cover object-center"
+                    src="{{ article.image | image_url: width: 800 }}"
+                    alt="{{ article.image.alt | escape }}"
+                    width="{{ article.image.width }}"
+                    height="{{ article.image.height }}"
+                    loading="lazy"
                   >
                 </a>
               {% else %}

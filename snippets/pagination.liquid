@@ -1,4 +1,4 @@
-{% if pagination.pages > 0 %}
+{% if pagination.pages > 1 %}
   <nav role="navigation" class="flex justify-center my-8">
     {% if pagination.previous %}
       <a
@@ -34,3 +34,59 @@
     {% endif %}
   </nav>
 {% endif %}
+
+{% comment %}
+  {% if pagination.pages > 1 %}
+    <nav role="navigation" class="flex justify-center items-center my-8">
+      {% if pagination.previous %}
+        <a
+          href="{{ pagination.previous.url }}"
+          class="border border-gray-600 text-gray-600 hover:bg-gray-600 hover:text-white px-8 py-3 mx-1 rounded-sm font-medium"
+          >Previous</a
+        >
+      {% endif %}
+
+      {% if pagination.next %}
+        <a
+          href="{{ pagination.next.url }}"
+          class="border border-gray-600 text-gray-600 hover:bg-gray-600 hover:text-white px-8 py-3 mx-1 rounded-sm font-medium"
+          >Next</a
+        >
+      {% endif %}
+    </nav>
+  {% endif %}
+{% endcomment %}
+{% comment %}
+  {% if pagination.pages > 1 %}
+    <nav role="navigation" class="flex justify-center items-center my-8">
+      {% if pagination.previous %}
+        <a
+          href="{{ pagination.previous.url }}"
+          class="px-4 py-2 mx-1 border border-gray-600 rounded hover:bg-gray-600 hover:text-white"
+          >Previous</a
+        >
+      {% endif %}
+
+      {% for part in pagination.parts %}
+        {% if part.is_link %}
+          <a
+            href="{{ part.url }}"
+            class="px-4 py-2 mx-1 border border-gray-600 rounded hover:bg-gray-600 hover:text-white"
+          >
+            {{- part.title -}}
+          </a>
+        {% else %}
+          <span class="px-4 py-2 mx-1 border border-gray-600 bg-gray-600 text-white rounded">{{ part.title }}</span>
+        {% endif %}
+      {% endfor %}
+
+      {% if pagination.next %}
+        <a
+          href="{{ pagination.next.url }}"
+          class="px-4 py-2 mx-1 border border-gray-600 rounded hover:bg-gray-600 hover:text-white"
+          >Next</a
+        >
+      {% endif %}
+    </nav>
+  {% endif %}
+{% endcomment %}
